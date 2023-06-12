@@ -1,1 +1,1 @@
-# javascript-es6-examples
+# JavaScript ES6
