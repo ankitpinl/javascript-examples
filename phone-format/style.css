@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f9f7f6;
+    color: #404d5b;
+    font-weight: 500;
+    font-size: 1.05em;
+    font-family: 'Raleway', Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+input {
+    background-color: #EFEEEE;
+    margin-top: 10%;
+    width: 24%;
+    padding: 15px 10px;
+    font-size: 20px;
+    border: 0px solid #dcdcdc;
+    outline: none;
+}
