@@ -8,3 +8,6 @@ The filter() method is an iterative method. It creates a new array with all elem
 ### Description
 The reduce() method performs a reducer function for array element. It returns a single value. The reduce() method does not execute the function for empty array elements.This method does not change the original array.
 
+## Hover on image
+### Description
+When you hover on image, the image will be replaced and new image will come in src. There is an attribute named data-src.
