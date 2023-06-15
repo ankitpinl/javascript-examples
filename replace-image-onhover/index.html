@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Img Src
+    </title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style type="text/css">
+        .col-sm-4 {
+            margin-bottom: 20px;
+        }
+
+        .imgBox {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .imgBox.replaced {
+            background-color: rgba(0, 0, 0, 0.5)
+        }
+
+        .imgBox.replaced img {
+            opacity: 0;
+        }
+
+        .imgBox span {
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            color: #fff;
+            text-shadow: 2px 2px 5px #000;
+            font-size: 30px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 cardbox">
+                <div class="card">
+                    <div class="imgBox">
+                        <img class="card-img-top" src="architectural-262a.jpg" data-src="universe-63a.jpg" alt="Card image">
+                        <span>Loading...</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                        <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 cardbox">
+                <div class="card">
+                    <div class="imgBox">
+                        <img class="card-img-top" src="bruce-lee-0a.jpg" data-src="universe-62a.jpg" alt="Card image">
+                        <span>Loading...</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                        <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 cardbox">
+                <div class="card">
+                    <div class="imgBox">
+                        <img class="card-img-top" src="new-year-274a.jpg" data-src="universe-61a.jpg" alt="Card image">
+                        <span>Loading...</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                        <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 cardbox">
+                <div class="card">
+                    <div class="imgBox">
+                        <img class="card-img-top" src="universe-5a.jpg" data-src="universe-60a.jpg" alt="Card image">
+                        <span>Loading...</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                        <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 cardbox">
+                <div class="card">
+                    <div class="imgBox">
+                        <img class="card-img-top" src="universe-12v.jpg" data-src="universe-58a.jpg" alt="Card image">
+                        <span>Loading...</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                        <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 cardbox">
+                <div class="card">
+                    <div class="imgBox">
+                        <img class="card-img-top" src="universe-17v.jpg" data-src="universe-57a.jpg" alt="Card image">
+                        <span>Loading...</span>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">John Doe</h4>
+                        <p class="card-text">Some example text.</p>
+                        <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const allCards = document.querySelectorAll('.cardbox');
+        allCards.forEach((item) => {
+            item.addEventListener('mouseenter', function () {
+                if (!item.querySelector('span').classList.contains('added')) {
+                    const getAttr = item.querySelector('img').dataset.src;
+                    if (getAttr != undefined) {
+                        item.querySelector('img').setAttribute('data-original-src', item.querySelector(
+                            'img').src);                        
+                        item.querySelector('img').src = getAttr;
+                        item.querySelector('span').style.display = 'block';
+                        item.querySelector('.imgBox').classList.add('replaced');
+                        const imgComplete = setInterval(() => {
+                            if (item.querySelector('img').complete) {
+                                item.querySelector('.imgBox').classList.remove('replaced');
+                                item.querySelector('span').style.display = 'none';
+                                item.querySelector('span').classList.add('added');
+                                clearInterval(imgComplete);
+                            }
+                        }, 10);
+                    } else {
+                        console.log('Undefined');
+                    }
+                } else {
+                    const getAttr = item.querySelector('img').dataset.src;
+                    if (getAttr != undefined) {
+                        item.querySelector('img').src = getAttr;
+                    }
+                }
+            });
+
+            item.addEventListener('mouseleave', function () {
+                const getAttr = item.querySelector('img').dataset.originalSrc;
+                item.querySelector('img').src = getAttr;
+            });
+        });
+    </script>
+</body>
+
+</html>
