@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif
+    }
+
+    .product-filter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .display-table {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    select {
+      width: 100%;
+      font-family: inherit;
+      font-size: inherit;
+      cursor: inherit;
+      line-height: inherit;
+      height: 35px;
+      margin-bottom: 10px;
+    }
+
+    input[type=button] {
+      background-color: #04AA6D;
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    input[type=button]:disabled,
+    input[type=button][disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="product-filter">
+    <div class="container">
+      <div class="product-filter-inn">
+        <div class="custom-row">
+          <div class="display-table clearfix">
+            <div class="column xlarge-4 large-3 pro-fil-head">
+              <div class="pro-fil-heading">
+                <h2>PARTS FINDER</h2>
+                <p>To filter all parts that are suitable for your vehicle, simply enter its specifications bellow</p>
+              </div>
+            </div>
+            <div class="column xlarge-7 large-8 pro-fil-box clearfix">
+              <div class="product-model">
+                <div class="filter-block">
+                  <select class="form-select" id="make">
+                    <option value="make">Loading...</option>
+                  </select>
+                </div>
+              </div>
+              <div class="product-type">
+                <div class="filter-block">
+                  <select class="form-select" id="model" disabled>
+                    <option value="model">Choose Model</option>
+                  </select>
+                </div>
+              </div>
+              <div class="product-year">
+                <div class="filter-block">
+                  <select class="form-select" id="year" disabled>
+                    <option value="year">Choose Year</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="column xlarge-1 large-1 pro-fil-btn">
+              <div class="pro-fil-btn">
+                <input type="button" class="button button--primary" value="Filter" disabled id="filter" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="make-model-year.js"></script>
+</body>
+
+</html>
