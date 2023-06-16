@@ -11,3 +11,7 @@ The reduce() method performs a reducer function for array element. It returns a 
 ## Hover on image
 ### Description
 When you hover on image, the image will be replaced and new image will come in src. There is an attribute named data-src.
+
+## Make Model Year functionality
+## Description
+There are three select boxes - make, model and year. model and year would be default disable. When you select any option from make select, based on the value the second select box model would be enable and options would be appeared and same for the third.
