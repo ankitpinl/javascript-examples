@@ -1,4 +1,4 @@
-# JavaScript ES6
+# JavaScript Examples
 
 ## Filter method
 ### Description
