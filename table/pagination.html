@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination</title>
+    <style>
+        .container {
+            border: 1px solid rgba(0, 0, 0, .11);
+            ;
+            padding: 10px;
+            width: 500px
+        }
+
+        .controls-item {
+            display: inline-block;
+        }
+
+        .btn {
+            margin: 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <div class="container">
+
+    </div>
+    <div class="container ">
+        <!-- Table structure here -->
+        <table class="table table-dark" id="our-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>First</th>
+                    <th>Last</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container ">
+        <div id="pagination-wrapper"></div>
+    </div>
+
+    <script>
+        const tableData = [{
+            'first_name': 'Russell',
+            'last_name': 'Wilson',
+            'rank': '1',
+        },
+        {
+            'first_name': 'Matt',
+            'last_name': 'Hasselbeck',
+            'rank': '2',
+        },
+        {
+            'first_name': 'Jim',
+            'last_name': 'Zorn',
+            'rank': '3',
+        },
+        {
+            'first_name': 'Brady',
+            'last_name': 'Quinn',
+            'rank': '4',
+        },
+        {
+            'first_name': 'Charly',
+            'last_name': 'Whitehurst',
+            'rank': '5',
+        },
+        {
+            'first_name': 'Duane',
+            'last_name': 'Devine',
+            'rank': '6',
+        },
+        {
+            'first_name': 'Tom',
+            'last_name': 'Brady',
+            'rank': '7',
+        },
+        {
+            'first_name': 'Arron',
+            'last_name': 'Rogers',
+            'rank': '8',
+        },
+        {
+            'first_name': 'Patrick',
+            'last_name': 'Mahoms',
+            'rank': '9',
+        },
+        {
+            'first_name': 'Gardner',
+            'last_name': 'Minshew',
+            'rank': '10',
+        },
+        {
+            'first_name': 'Andrew',
+            'last_name': 'Luck',
+            'rank': '11',
+        },
+        {
+            'first_name': 'Josh',
+            'last_name': 'Gordon',
+            'rank': '12',
+        },
+        {
+            'first_name': 'Drew',
+            'last_name': 'Brees',
+            'rank': '13',
+        },
+        {
+            'first_name': 'Cam',
+            'last_name': 'Newton',
+            'rank': '14',
+        },
+        {
+            'first_name': 'Joe',
+            'last_name': 'Montana',
+            'rank': '15',
+        },
+        {
+            'first_name': 'Steve',
+            'last_name': 'Young',
+            'rank': '16',
+        },
+        {
+            'first_name': 'Dan',
+            'last_name': 'Jones',
+            'rank': '17',
+        },
+        {
+            'first_name': 'Eli',
+            'last_name': 'Manning',
+            'rank': '18',
+        },
+        {
+            'first_name': 'Marus',
+            'last_name': 'Marriota',
+            'rank': '19',
+        },
+        {
+            'first_name': 'Ryan',
+            'last_name': 'Fitzpatrick',
+            'rank': '20',
+        },
+        {
+            'first_name': 'Russell',
+            'last_name': 'Wilson',
+            'rank': '21',
+        },
+        {
+            'first_name': 'Matt',
+            'last_name': 'Hasselbeck',
+            'rank': '22',
+        },
+        {
+            'first_name': 'Jim',
+            'last_name': 'Zorn',
+            'rank': '23',
+        },
+        {
+            'first_name': 'Brady',
+            'last_name': 'Quinn',
+            'rank': '24',
+        },
+        {
+            'first_name': 'Charly',
+            'last_name': 'Whitehurst',
+            'rank': '25',
+        },
+        {
+            'first_name': 'Duane',
+            'last_name': 'Devine',
+            'rank': '26',
+        },
+        {
+            'first_name': 'Tom',
+            'last_name': 'Brady',
+            'rank': '27',
+        },
+        {
+            'first_name': 'Arron',
+            'last_name': 'Rogers',
+            'rank': '28',
+        },
+        {
+            'first_name': 'Patrick',
+            'last_name': 'Mahoms',
+            'rank': '29',
+        },
+        {
+            'first_name': 'Gardner',
+            'last_name': 'Minshew',
+            'rank': '30',
+        },
+        {
+            'first_name': 'Andrew',
+            'last_name': 'Luck',
+            'rank': '31',
+        },
+        {
+            'first_name': 'Josh',
+            'last_name': 'Gordon',
+            'rank': '32',
+        },
+        {
+            'first_name': 'Drew',
+            'last_name': 'Brees',
+            'rank': '33',
+        },
+        {
+            'first_name': 'Cam',
+            'last_name': 'Newton',
+            'rank': '34',
+        },
+        {
+            'first_name': 'Joe',
+            'last_name': 'Montana',
+            'rank': '35',
+        },
+        {
+            'first_name': 'Steve',
+            'last_name': 'Young',
+            'rank': '36',
+        },
+        {
+            'first_name': 'Dan',
+            'last_name': 'Jones',
+            'rank': '37',
+        },
+        {
+            'first_name': 'Eli',
+            'last_name': 'Manning',
+            'rank': '38',
+        },
+        {
+            'first_name': 'Marus',
+            'last_name': 'Marriota',
+            'rank': '39',
+        },
+        {
+            'first_name': 'Ryan',
+            'last_name': 'Fitzpatrick',
+            'rank': '40',
+        },
+        {
+            'first_name': 'Chad',
+            'last_name': 'Pennington',
+            'rank': '41',
+        }
+        ]
+
+        const state = {
+            'querySet': tableData,
+            'page': 1,
+            'rows': 5,
+            'window': 5,
+        }
+
+        function pagination(querySet, page, rows) {
+
+            const trimStart = (page - 1) * rows
+            const trimEnd = trimStart + rows
+
+            const trimmedData = querySet.slice(trimStart, trimEnd)
+            const pages = Math.ceil(querySet.length / rows);
+
+            return {
+                'querySet': trimmedData,
+                'pages': pages,
+            }
+        }
+
+        function pageButtons(pages) {
+            const wrapper = document.getElementById('pagination-wrapper');
+            wrapper.innerHTML = ``
+
+            let maxLeft = (state.page - Math.floor(state.window / 2))
+            let maxRight = (state.page + Math.floor(state.window / 2))
+
+            if (maxLeft < 1) {
+                maxLeft = 1
+                maxRight = state.window
+            }
+
+            if (maxRight > pages) {
+                maxLeft = pages - (state.window - 1)
+
+                if (maxLeft < 1) {
+                    maxLeft = 1
+                }
+                maxRight = pages
+            }
+
+            for (let page = maxLeft; page <= maxRight; page++) {
+                wrapper.innerHTML += `<button value=${page} class="page btn btn-sm btn-info">${page}</button>`
+            }
+
+            if (state.page != 1) {
+                wrapper.innerHTML = `<button value=${1} class="page btn btn-sm btn-info">&#171; First</button>` + wrapper.innerHTML
+            }
+
+            if (state.page != pages) {
+                wrapper.innerHTML += `<button value=${pages} class="page btn btn-sm btn-info">Last &#187;</button>`
+            }
+
+            document.querySelectorAll('.page').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    document.getElementById('table-body').innerHTML = '';
+                    state.page = Number(e.target.value)
+                    buildTable();
+                });
+            });
+        }
+
+        function buildTable() {
+
+            const table = document.getElementById('table-body');
+            const data = pagination(state.querySet, state.page, state.rows);
+
+            const myList = data.querySet;
+
+            console.log('myList: ', myList)
+
+            for (let item of myList) {
+                let row = `<tr>
+                    <td>${item.rank}</td>
+                    <td>${item.first_name}</td>
+                    <td>${item.last_name}</td>
+                </tr>`;
+                table.innerHTML += row;
+            }
+
+            pageButtons(data.pages);
+        }
+
+        buildTable();
+    </script>
+</body>
+
+</html>
