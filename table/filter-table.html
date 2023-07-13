@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter and sorting table</title>
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        th {
+            color: #fff;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
+                <input type="text" id="search-input" class="form-control">
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table table-striped">
+        <tr class="bg-info">
+            <th data-column="name" data-order="desc">Name &#9650</th>
+            <th data-column="age" data-order="desc">Age &#9650</th>
+            <th data-column="birthdate" data-order="desc">Birthday &#9650</th>
+        </tr>
+
+        <tbody id="myTable">
+
+        </tbody>
+    </table>
+
+    <script>
+
+        let userList = [
+            { 'name': 'Michael', 'age': '30', 'birthdate': '11/10/1989' },
+            { 'name': 'Mila', 'age': '32', 'birthdate': '10/1/1989' },
+            { 'name': 'Paul', 'age': '29', 'birthdate': '10/14/1990' },
+            { 'name': 'Dennis', 'age': '25', 'birthdate': '11/29/1993' },
+            { 'name': 'Tim', 'age': '27', 'birthdate': '3/12/1991' },
+            { 'name': 'Erik', 'age': '24', 'birthdate': '10/31/1995' },
+        ];
+
+        buildTable(userList);
+
+        function buildTable(data) {
+            const table = document.getElementById('myTable')
+            table.innerHTML = '';
+            for (let i = 0; i < data.length; i++) {
+                const row = `<tr>
+                                <td>${data[i].name}</td>
+                                <td>${data[i].age}</td>
+                                <td>${data[i].birthdate}</td>
+                          </tr>`
+                table.innerHTML += row
+            }
+        }
+
+        document.querySelector('#search-input').addEventListener('keyup', (e) => {
+            const value = e.target.value;
+            const data = searchTable(value, userList);
+            buildTable(data);
+        });
+
+        function searchTable(value, data) {
+            var filteredData = [];
+
+            for (var i = 0; i < data.length; i++) {
+                value = value.toLowerCase();
+                var name = data[i].name.toLowerCase();
+                if (name.includes(value)) {
+                    filteredData.push(data[i])
+                }
+            }
+            return filteredData;
+        }
+
+        document.querySelectorAll('th').forEach(item => {
+            item.addEventListener('click', (e) => {
+                let column = e.target.attributes['data-column'].value;
+                let order = e.target.attributes['data-order'].value;
+                let text = e.target.innerHTML;
+                text = text.substring(0, text.length - 1);
+
+                if (order == 'desc') {
+                    e.target.setAttribute('data-order', 'asc')
+                    userList = userList.sort((a, b) => a[column] > b[column] ? 1 : -1)
+                    text += '&#9660'
+                } else {
+                    e.target.setAttribute('data-order', 'desc')
+                    userList = userList.sort((a, b) => a[column] < b[column] ? 1 : -1)
+                    text += '&#9650'
+                }
+
+                e.target.innerHTML = text;
+                buildTable(userList)
+            })
+        })
+    </script>
+</body>
+
+</html>
