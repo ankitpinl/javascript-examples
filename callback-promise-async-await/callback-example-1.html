@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <ul class="login list-group"></ul>
+    <script>
+        function start() {
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.innerHTML = 'start login...'
+            document.querySelector('.login').appendChild(li);
+        }
+
+        function LoginUser(email, password, callback) {
+            setTimeout(() => {
+                callback({ userEmail: email })
+            }, 3000);
+        }
+
+        function end() {
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.innerHTML = 'end login process...'
+            document.querySelector('.login').appendChild(li);
+        }
+
+        start();
+        const user = LoginUser('engraved@gmail.com', 12345, user => {
+            const li = document.createElement('li');
+            li.className = 'list-group-item';
+            li.innerHTML = user.userEmail + ' is authenticated';
+            document.querySelector('.login').appendChild(li);
+            setTimeout(() => {
+                end();
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
